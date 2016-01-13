@@ -1,0 +1,38 @@
+from datetime import *
+from calendar import *
+
+def printMonthCalendar(date):
+    currentMonth = monthrange(date.year, date.month)
+    numOfDays = currentMonth[1]
+    firstDay = date.isoweekday()
+
+    # absolute iterator
+    d = 0
+    # iterator for calendar days
+    n = date.day
+    #title
+    weekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+
+    for i in range(7):
+        print("\t" + weekdays[i], end='')
+        if i == 6:
+            print("", end='\n')
+
+
+    while n <= numOfDays:
+        if d < firstDay:
+            print("\t"+" ", end="")
+            d += 1
+        elif d >= firstDay:
+            print("\t"+str(n), end='')
+            d += 1
+            n += 1
+            if d % 7 == 0:
+                print("")
+def getDate():
+    date = input("Input date in format day-month-year(17-jun-1994)\n>>> ")
+    CurrentDate = datetime.strptime(date, "%d-%b-%Y")
+    return CurrentDate
+    
+printMonthCalendar(getDate())
+
